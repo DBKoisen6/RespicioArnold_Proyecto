@@ -1,0 +1,65 @@
+<div class="container mt-3">
+  <div class="text-center p-2 rounded" style="background-color: #7db122; color: white;">
+    <h4>LISTA DE PERSONAL</h4>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <div class="w-50">
+      <input type="text" class="form-control border-0 border-bottom" placeholder="Filtro" style="outline: none;" [(ngModel)]="filtro" (input)="filtrarPersonal()">
+    </div>
+    <button mat-raised-button style="background-color: #7db122; color: white; font-weight: bold;" (click)="openDialogCreate()">
+      NUEVO PERSONAL
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="personalListFiltered" class="w-100" style="border-collapse: collapse;">
+
+    <ng-container matColumnDef="idPersonal">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> ID </th>
+      <td mat-cell *matCellDef="let personal"> {{ personal.idPersonal }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoDoc">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> TIPO DOC </th>
+      <td mat-cell *matCellDef="let personal"> {{ personal.tipoDoc }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroDoc">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> Nº DOCUMENTO </th>
+      <td mat-cell *matCellDef="let personal"> {{ personal.numeroDoc }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombreCompleto">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> NOMBRE COMPLETO </th>
+      <td mat-cell *matCellDef="let personal"> {{ personal.nombreCompleto }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edad">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> EDAD </th>
+      <td mat-cell *matCellDef="let personal"> {{ calcularEdad(personal.fechaNac) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaIngreso">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> FECHA REGISTRO </th>
+      <td mat-cell *matCellDef="let personal"> {{ personal.fechaIngreso | date:'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef style="background-color: #7db122; color: white;"> ACCIONES </th>
+      <td mat-cell *matCellDef="let personal" class="text-center">
+        <button mat-icon-button style="color: black;" (click)="openDialogUpdate(personal)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button style="color: black;" (click)="openDialogHijo(personal)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button style="color: black;" (click)="deletePersonal(personal)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom: 1px solid #ccc;"></tr>
+  </table>
+</div>

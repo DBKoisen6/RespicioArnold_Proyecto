@@ -1,0 +1,64 @@
+<h2 mat-dialog-title class="header mat-elevation-z2 text-center" style="background-color: #7DA650; color: white; padding: 10px;">
+  {{ isEdit ? 'EDITAR HIJO' : 'REGISTRAR HIJO' }}
+</h2>
+  
+<form [formGroup]="hijoForm">
+  <div class="container-fluid">
+    <div class="row g-2">
+      <div class="col-md-5">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Tipo Documento</mat-label>
+          <input matInput formControlName="tipoDoc" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-7">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Nro Documento</mat-label>
+          <input matInput formControlName="numeroDoc" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Apellido Paterno</mat-label>
+          <input matInput formControlName="apellidoPaterno" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Apellido Materno</mat-label>
+          <input matInput formControlName="apellidoMaterno" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Primer Nombre</mat-label>
+          <input matInput formControlName="primerNombre" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Segundo Nombre</mat-label>
+          <input matInput formControlName="segundoNombre" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Fecha Nacimiento</mat-label>
+          <input matInput type="date" formControlName="fechaNacimiento" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row mt-0 d-flex justify-content-center">
+      <div class="col-md-5">
+        <button mat-button class="w-100" style="background-color: #74AF49; color: white; height: 40px;" (click)="save()" [disabled]="hijoForm.invalid">
+          {{ isEdit ? 'ACTUALIZAR' : 'GUARDAR' }}
+        </button>
+      </div>
+      <div class="col-md-5">
+        <button mat-button class="w-100" style="background-color: #A12424; color: white; height: 40px;" (click)="cancel()">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</form>
+  
